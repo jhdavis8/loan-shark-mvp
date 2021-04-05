@@ -3,12 +3,12 @@ class Scene1 extends Phaser.Scene {
         super("bootGame");
     }
     preload() {
-        this.load.image("background", "src/assets/textures/grass.png");
-        this.load.image("house", "src/assets/objects/house.png", {
-            frameWidth: 48,
-            frameHeight: 48
+        this.load.image("background", "assets/textures/grass.png");
+        this.load.image("house", "assets/objects/house.png", {
+            frameWidth: 128,
+            frameHeight: 128
         });
-        this.load.image("boat", "src/assets/objects/LS-Raft.png", {
+        this.load.image("boat", "assets/objects/LS-Raft.png", {
             frameWidth: 32,
             frameHeight: 16
         });
