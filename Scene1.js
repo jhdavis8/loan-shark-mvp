@@ -8,6 +8,7 @@ class Scene1 extends Phaser.Scene {
             frameWidth: 128,
             frameHeight: 128
         });
+        this.load.image("logo", "assets/logos/loanSharkLogo.png");
         this.load.image("boat", "assets/objects/LS-Raft.png", {
             frameWidth: 32,
             frameHeight: 16
