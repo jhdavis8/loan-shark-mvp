@@ -53,19 +53,19 @@ class Scene2 extends Phaser.Scene {
                 console.log(this.player.x);
             }
         }
-        else if(this.cursorKeys.right.isDown){
+        if(this.cursorKeys.right.isDown){
             if(this.player.x < config.width-this.player.width/2){
                 this.player.x +=1;
                 console.log(this.player.x);
             }
         }
-        else if(this.cursorKeys.up.isDown){
+        if(this.cursorKeys.up.isDown){
             if(this.player.y >0+this.player.height/2){
                 this.player.y -=1;
                 console.log(this.player.y);
             }
         }
-        else if(this.cursorKeys.down.isDown){
+        if(this.cursorKeys.down.isDown){
             if(this.player.y < 193){
             this.player.y +=1;
             console.log(this.player.y)
