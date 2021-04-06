@@ -9,9 +9,9 @@ class Scene1 extends Phaser.Scene {
             frameWidth: 128,
             frameHeight: 128
         });
-        this.load.image("player", "assets/objects/captain.png", {
-            frameWidth: 60,
-            frameHeight: 60
+        this.load.spritesheet("player", "assets/sprites/Pirate1 (Walk).png", {
+            frameWidth: 32,
+            frameHeight: 32
         });
         this.load.image("logo", "assets/logos/loanSharkLogo.png");
         this.load.image("raft", "assets/objects/LS-Raft.png");

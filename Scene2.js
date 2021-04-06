@@ -13,9 +13,18 @@ class Scene2 extends Phaser.Scene {
         this.speedboat = this.add.image(300, 256, "speedboat");
 
 
-        this.player = this.physics.add.image(150,150, "player");
+        this.player = this.physics.add.sprite(150,150, "player");
 
         this.cursorKeys = this.input.keyboard.createCursorKeys();
+
+        this.anims.create({
+            key: "player_anim",
+            frames: this.anims.generateFrameNumbers("player"),
+            frameRate: 20,
+            repeat: -1
+          });
+
+        this.player.play("player_anim");
     }
     /*moveShip(ship, speed) {
         ship.y+= speed;
@@ -35,27 +44,27 @@ class Scene2 extends Phaser.Scene {
 
     movePlayerManager(){
         if(this.cursorKeys.left.isDown){
-            if(this.player.x > 27){
+            if(this.player.x > 0+this.player.width/2){
                 this.player.x -=1;
                 console.log(this.player.x);
             }
         }
         else if(this.cursorKeys.right.isDown){
-            if(this.player.x < 373){
+            if(this.player.x < config.width-this.player.width/2){
                 this.player.x +=1;
                 console.log(this.player.x);
             }
         }
         else if(this.cursorKeys.up.isDown){
-            if(this.player.y >37){
+            if(this.player.y >0+this.player.height/2){
                 this.player.y -=1;
                 console.log(this.player.y);
             }
         }
         else if(this.cursorKeys.down.isDown){
-            if(this.player.y <171){
+            if(this.player.y < 193){
             this.player.y +=1;
-            //console.log(this.player.y)
+            console.log(this.player.y)
         }
         }
         else{}
