@@ -7,14 +7,15 @@ class Scene2 extends Phaser.Scene {
         this.water= this.add.tileSprite(200,360, config.width, config.height, "water");
         this.background.setOrigin(0,0);
         this.logo = this.add.image(80, 60, "logo");
-        this.house = this.add.image(128, 128, "house");
+        this.house = this.physics.add.image(128, 128, "house");
         this.raft = this.add.image(100, 256, "raft");
         this.rowboat = this.add.image(200, 256, "rowboat");
         this.speedboat = this.add.image(300, 256, "speedboat");
+        this.player = this.physics.add.sprite(300,150, "player");
 
-
-        this.player = this.physics.add.sprite(150,150, "player");
-
+        this.score=10;
+        this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont","Money: ", 16);
+       
         this.cursorKeys = this.input.keyboard.createCursorKeys();
 
         this.anims.create({
@@ -25,6 +26,7 @@ class Scene2 extends Phaser.Scene {
           });
 
         this.player.play("player_anim");
+        this.physics.add.overlap(this.player, this.house, this.pickPowerUp, null, this);
     }
     /*moveShip(ship, speed) {
         ship.y+= speed;
@@ -36,11 +38,13 @@ class Scene2 extends Phaser.Scene {
         var randomX = Phaser.Math.Between(0,config.width);
         ship.x = randomX;
     }*/
-
+    pickPowerUp(player, house){
+        this.score+=15;
+        this.scoreLabel.text = "Money: " + this.score;
+    }
     update() {
         this.movePlayerManager();
     }
-
 
     movePlayerManager(){
         if(this.cursorKeys.left.isDown){
@@ -65,6 +69,10 @@ class Scene2 extends Phaser.Scene {
             if(this.player.y < 193){
             this.player.y +=1;
             console.log(this.player.y)
+        }
+        else if(this.cursorKeys.spacebar.isDown){
+            this.score+=1;
+            this.scoreLabel.text ="Money: " +this.score;
         }
         }
         else{}

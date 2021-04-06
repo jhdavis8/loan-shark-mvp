@@ -17,6 +17,7 @@ class Scene1 extends Phaser.Scene {
         this.load.image("raft", "assets/objects/LS-Raft.png");
         this.load.image("speedboat", "assets/objects/speedboat.png");
         this.load.image("rowboat", "assets/objects/rowboat.png");
+        this.load.bitmapFont("pixelFont","assets/font/font.png","assets/font/font.xml");
         /*
         this.load.spritesheet("ship3", "src/assets/objects/minimum-viable-rowboat.png", {
             frameWidth: 32,
