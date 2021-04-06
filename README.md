@@ -6,3 +6,5 @@ Justin Henke — minimum viable boat/speedboat textures, set up test scene for d
 John Pedicone — Beautiful logo, textures, and rest of the sprites
 
 Mario Durso - Added player sprite and movement
+
+Joe Linthicum - Cleaned up movement mechanics, added diagonal movement
