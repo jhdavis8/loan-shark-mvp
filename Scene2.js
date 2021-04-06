@@ -11,6 +11,11 @@ class Scene2 extends Phaser.Scene {
         this.raft = this.add.image(100, 256, "raft");
         this.rowboat = this.add.image(200, 256, "rowboat");
         this.speedboat = this.add.image(300, 256, "speedboat");
+
+
+        this.player = this.physics.add.image(150,150, "player");
+
+        this.cursorKeys = this.input.keyboard.createCursorKeys();
     }
     /*moveShip(ship, speed) {
         ship.y+= speed;
@@ -24,5 +29,36 @@ class Scene2 extends Phaser.Scene {
     }*/
 
     update() {
+        this.movePlayerManager();
+    }
+
+
+    movePlayerManager(){
+        if(this.cursorKeys.left.isDown){
+            if(this.player.x > 27){
+                this.player.x -=1;
+                console.log(this.player.x);
+            }
+        }
+        else if(this.cursorKeys.right.isDown){
+            if(this.player.x < 373){
+                this.player.x +=1;
+                console.log(this.player.x);
+            }
+        }
+        else if(this.cursorKeys.up.isDown){
+            if(this.player.y >37){
+                this.player.y -=1;
+                console.log(this.player.y);
+            }
+        }
+        else if(this.cursorKeys.down.isDown){
+            if(this.player.y <171){
+            this.player.y +=1;
+            //console.log(this.player.y)
+        }
+        }
+        else{}
+        
     }
 }
