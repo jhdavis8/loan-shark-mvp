@@ -1,7 +1,12 @@
+
+
 class Scene1 extends Phaser.Scene {
+    
     constructor() {
         super("bootGame");
     }
+
+
     preload() {
         this.load.image("background", "assets/textures/grass.png");
         this.load.image("water", "assets/textures/water.png");
@@ -18,22 +23,13 @@ class Scene1 extends Phaser.Scene {
         this.load.image("speedboat", "assets/objects/speedboat.png");
         this.load.image("rowboat", "assets/objects/rowboat.png");
         this.load.bitmapFont("pixelFont","assets/font/font.png","assets/font/font.xml");
-        /*
-        this.load.spritesheet("ship3", "src/assets/objects/minimum-viable-rowboat.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("explosion", "assets/images/explosion.png", {
-            frameWidth: 16,
-            frameHeight: 16
-        });
-        this.load.spritesheet("power-up", "assets/images/power-up.png", {
-            frameWidth: 16,
-            frameHeight: 16
-        });*/
+       
     }
     create() {
         this.add.text(20,20,"Loading game...");
-        this.scene.start("playGame");
+        this.person = new  Player();
+        console.log(Player.name);
+        this.scene.start("playGame", {"score" : 10});
     }
+    
 }
