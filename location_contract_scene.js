@@ -1,14 +1,15 @@
-class location_contract_scene extends Phaser.Scene {
+class location_contract_scene extends Phaser.Scene{
     constructor() {
         super("house");
-        
-        
+
     }
 
     init(data){
         this.score = data.score;
     }
-    preload() {1
+    preload() {
+        this.load.image("buy", "assets/buttons/button_buy-property.png");
+        this.load.image("leave", "assets/buttons/button_return-to-town.png");
         this.load.image("outside_house", "assets/textures/abandoned_house.png", {
             frameWidth: 400,
             frameHeight: 300
@@ -30,7 +31,13 @@ class location_contract_scene extends Phaser.Scene {
         this.loan_rate = this.add.bitmapText(10, 120, "pixelFont","Loan amount: $170,000, 8%, 10 years", 32, 1);
         this.cursorKeys = this.input.keyboard.createCursorKeys();
 
+
+        var Base_property = this.scene.get("Base_property");
+        Base_property.add_buttons(this);
+        
+
     }
+
 
     update(){
         this.changeSceneManager()
@@ -39,8 +46,10 @@ class location_contract_scene extends Phaser.Scene {
     changeSceneManager(){
         if(this.cursorKeys.space.isDown){
             this.scene.start("playGame", {"score" : this.score});
+            
         }
     }
+    
         
 
 }

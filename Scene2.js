@@ -47,12 +47,15 @@ class Scene2 extends Phaser.Scene {
         if(this.cursorKeys.left.isDown){
             if(this.player.x > 0+this.player.width/2){
                 this.player.x -=1;
+                this.player.flipX=true;
                 console.log(this.player.x);
+
             }
         }
         if(this.cursorKeys.right.isDown){
             if(this.player.x < config.width-this.player.width/2){
                 this.player.x +=1;
+                this.player.flipX=false;
                 console.log(this.player.x);
             }
         }
