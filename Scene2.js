@@ -5,6 +5,11 @@ class Scene2 extends Phaser.Scene {
     }
     init(data){
         this.score = data.score;
+        this.totalTime = data.totalTime;
+        this.displayTime = data.displayTime;
+        this.timeMod = data.timeMod;
+        this.timeSuffix = data.timeSuffix;
+        this.hour = data.hour;
     }
     create() {
         
@@ -20,6 +25,7 @@ class Scene2 extends Phaser.Scene {
 
         
         this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont","Money: " + this.score, 16);
+        this.timeLabel = this.add.bitmapText(10, 20, "pixelFont","Time: " + this.totalTime, 16);
        
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         
@@ -41,6 +47,7 @@ class Scene2 extends Phaser.Scene {
     }
     update() {
         this.movePlayerManager();
+        this.updateTimeOfDay();
     }
 
     movePlayerManager(){
@@ -78,5 +85,18 @@ class Scene2 extends Phaser.Scene {
         }
         else{}
         
+    }
+
+    updateTimeOfDay(){
+        this.totalTime+= 1;
+        this.timeMod = this.totalTime % 720;
+        if(this.totalTime%1440 >= 720){
+            this.timeSuffix = "PM";
+        } else{
+            this.timeSuffix = "AM";
+        }
+        this.hour = (this.timeMod/60 | 0);
+        this.displayTime = this.totalTime.toString();
+        //this.displayTime = ((this.timeMod/60) | 0).toString() + ":" (this.timeMod-(60*this.hour)).toString() + " " + this.timeSuffix;
     }
 }
