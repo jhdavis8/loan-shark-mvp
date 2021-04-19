@@ -7,6 +7,7 @@ class Scene2 extends Phaser.Scene {
         this.score = data.score;
     }
     create() {
+    
         
         this.background= this.add.tileSprite(0,0, config.width, config.height, "background");
         this.water= this.add.tileSprite(400,800, config.width, config.height, "water");
@@ -22,6 +23,7 @@ class Scene2 extends Phaser.Scene {
         this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont","Money: " + this.score, 16);
        
         this.cursorKeys = this.input.keyboard.createCursorKeys();
+        
         
 
         this.anims.create({
@@ -41,7 +43,17 @@ class Scene2 extends Phaser.Scene {
     }
     update() {
         this.movePlayerManager();
+        
+         this.loadMenu();
     }
+   
+    loadMenu(){
+        this.input.keyboard.on('keydown-A', function (event) {
+          console.log("MENU OPEN");
+          this.scene.start("menuS", {"score" : this.score});},this);
+        
+    }
+    
 
     movePlayerManager(){
         if(this.cursorKeys.left.isDown){
@@ -75,7 +87,10 @@ class Scene2 extends Phaser.Scene {
             this.score+=1;
             console.log(this.score);
             this.scoreLabel.text ="Money:" +this.score.toString();
+            
         }
+        
+        
         else{}
         
     }
