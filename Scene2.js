@@ -1,15 +1,20 @@
 class Scene2 extends Phaser.Scene {
+    
+    totalTime;
+    displayTime;
+    //the higher the timerate, the slower the clock moves
+    timeRate;
+    timeRateCounter;
+
     constructor() {
         super("playGame");
+        this.totalTime = 0;
+        this.timeRate = 4;
+        this.timeRateCounter = 0;
         
     }
     init(data){
         this.score = data.score;
-        this.totalTime = data.totalTime;
-        this.displayTime = data.displayTime;
-        this.timeMod = data.timeMod;
-        this.timeSuffix = data.timeSuffix;
-        this.hour = data.hour;
     }
     create() {
         
@@ -88,7 +93,11 @@ class Scene2 extends Phaser.Scene {
     }
 
     updateTimeOfDay(){
-        this.totalTime+= 1;
+        this.timeRateCounter++;
+        if (this.timeRateCounter == this.timeRate){
+            this.timeRateCounter = 0;
+            this.totalTime += 1;
+        }
         this.timeMod = this.totalTime % 720;
         if(this.totalTime%1440 >= 720){
             this.timeSuffix = "PM";
@@ -96,7 +105,15 @@ class Scene2 extends Phaser.Scene {
             this.timeSuffix = "AM";
         }
         this.hour = (this.timeMod/60 | 0);
-        this.displayTime = this.totalTime.toString();
-        //this.displayTime = ((this.timeMod/60) | 0).toString() + ":" (this.timeMod-(60*this.hour)).toString() + " " + this.timeSuffix;
+        this.minute = (this.timeMod-(60 * this.hour));
+        if (this.minute == this.minute%10){
+            this.minute = "0" + this.minute.toString()
+        }
+        if (this.hour == 0)
+            this.hour = 12;
+        this.displayTime = (this.hour.toString() + ":"  + this.minute.toString() + " " + this.timeSuffix);
+
+        
+        this.timeLabel.text = "time: " + this.displayTime;
     }
 }
