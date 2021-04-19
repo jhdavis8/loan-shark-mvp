@@ -1,6 +1,16 @@
 class Scene2 extends Phaser.Scene {
+    
+    totalTime;
+    displayTime;
+    //the higher the timerate, the slower the clock moves
+    timeRate;
+    timeRateCounter;
+
     constructor() {
         super("playGame");
+        this.totalTime = 0;
+        this.timeRate = 4;
+        this.timeRateCounter = 0;
         
     }
     init(data){
@@ -34,6 +44,7 @@ class Scene2 extends Phaser.Scene {
 
         
         this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont","Money: " + this.score, 16);
+        this.timeLabel = this.add.bitmapText(10, 20, "pixelFont","Time: " + this.totalTime, 16);
        
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         
@@ -50,7 +61,8 @@ class Scene2 extends Phaser.Scene {
     update() {
         this.movePlayerManager();
         
-         this.loadMenu();
+        this.loadMenu();
+        this.updateTimeOfDay();
     }
    
     loadMenu(){
@@ -113,5 +125,29 @@ class Scene2 extends Phaser.Scene {
           }, this);
 
           scene.player.play("player_anim");
+    }
+    updateTimeOfDay(){
+        this.timeRateCounter++;
+        if (this.timeRateCounter == this.timeRate){
+            this.timeRateCounter = 0;
+            this.totalTime += 1;
+        }
+        this.timeMod = this.totalTime % 720;
+        if(this.totalTime%1440 >= 720){
+            this.timeSuffix = "PM";
+        } else{
+            this.timeSuffix = "AM";
+        }
+        this.hour = (this.timeMod/60 | 0);
+        this.minute = (this.timeMod-(60 * this.hour));
+        if (this.minute == this.minute%10){
+            this.minute = "0" + this.minute.toString()
+        }
+        if (this.hour == 0)
+            this.hour = 12;
+        this.displayTime = (this.hour.toString() + ":"  + this.minute.toString() + " " + this.timeSuffix);
+
+        
+        this.timeLabel.text = "time: " + this.displayTime;
     }
 }
