@@ -46,7 +46,9 @@ class Scene2 extends Phaser.Scene {
         this.roadedge.angle = 90;
         this.roadedge.setOrigin(0,0);
         this.house = this.physics.add.image(128, 128, "house");
-        this.boat = this.add.image(180, 556, "raft");
+        this.boat = this.physics.add.image(180, 540, "rowboat");
+        this.boat.body.setSize(120,40);
+        this.boat.angle = 180;
         //this.rowboat = this.add.image(240, 550, "rowboat");
         //this.speedboat = this.add.image(684, 546, "speedboat");
         //this.player = this.physics.add.sprite(300,150, "player");
@@ -60,12 +62,17 @@ class Scene2 extends Phaser.Scene {
         
 
         this.player_anim(this);
+        this.physics.add.overlap(this.player, this.boat, this.tada, null, this);
+        this.physics.add.collider(this.player,this.water);
         this.physics.add.overlap(this.player, this.house, this.pickPowerUp, null, this);
     }
     pickPowerUp(player, house){
         this.score+=15;
         this.scoreLabel.text = "Money: " + this.score;
         this.scene.start("house", {"score" : this.score});
+    }
+    tada() {
+        console.log("trigger boat scene");
     }
     update() {
 
@@ -91,7 +98,8 @@ class Scene2 extends Phaser.Scene {
     movePlayerManager(){
         if(this.cursorKeys.left.isDown){
             if(this.player.x > 0+this.player.width/2){
-                this.player.x -=1;
+                if((this.player.y > 490 && this.player.x > 131) || this.player.y <= 490)
+                    this.player.x-= 1;
                 this.player.flipX=true;
                 console.log(this.player.x);
 
@@ -99,7 +107,8 @@ class Scene2 extends Phaser.Scene {
         }
         if(this.cursorKeys.right.isDown){
             if(this.player.x < config.width-this.player.width/2){
-                this.player.x +=1;
+                if((this.player.y > 490 && this.player.x < 154) || this.player.y <= 490)
+                    this.player.x++;
                 this.player.flipX=false;
                 console.log(this.player.x);
             }
@@ -111,10 +120,12 @@ class Scene2 extends Phaser.Scene {
             }
         }
         if(this.cursorKeys.down.isDown){
-            if(this.player.y < 506){
+            if(this.player.y < 490){
                 this.player.y +=1;
                 console.log(this.player.y)
             }
+            if(this.player.x > 125 && this.player.x < 155  && this.player.y < 540) 
+                this.player.y++;
         }
         if(this.cursorKeys.space.isDown){
             this.score+=1;
