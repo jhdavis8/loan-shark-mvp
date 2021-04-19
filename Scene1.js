@@ -21,11 +21,23 @@ class Scene1 extends Phaser.Scene {
             frameWidth: 128,
             frameHeight: 128
         });
-        this.load.image("car", "assets/objects/car.png",{
-            frameWidth: 10,
-            frameHeight: 10
+        this.load.image("businessOld", "assets/objects/businessOld.png");
+        this.load.image("businessRestored", "assets/objects/business.png");
+
+        this.load.image("car", "assets/objects/car.png");
+        this.load.spritesheet("business", "assets/sprites/business.png", {
+            frameWidth: 80,
+            frameHeight: 80
         });
-        this.load.spritesheet("player", "assets/sprites/Pirate1 (Walk).png", {
+        this.load.spritesheet("playerIdle", "assets/sprites/pirateIdle.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("playerWalk", "assets/sprites/pirateWalk.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("player", "assets/sprites/pirateWalk.png", {
             frameWidth: 32,
             frameHeight: 32
         });

@@ -46,6 +46,10 @@ class Scene2 extends Phaser.Scene {
         this.roadedge.angle = 90;
         this.roadedge.setOrigin(0,0);
         this.house = this.physics.add.image(128, 128, "house");
+
+        this.business = this.physics.add.image(210, 240, "businessOld");
+        this.business.body.setSize(60,60);
+        this.business.body.setOffset(10,20);
         this.boat = this.physics.add.image(180, 540, "rowboat");
         this.boat.body.setSize(120,40);
         this.boat.angle = 180;
@@ -63,13 +67,20 @@ class Scene2 extends Phaser.Scene {
 
         this.player_anim(this);
         this.physics.add.overlap(this.player, this.boat, this.tada, null, this);
+        this.physics.add.overlap(this.player, this.business, this.businessScene, null, this);
+
         this.physics.add.collider(this.player,this.water);
-        this.physics.add.overlap(this.player, this.house, this.pickPowerUp, null, this);
+        this.physics.add.overlap(this.player, this.house, this.houseRepair, null, this);
     }
-    pickPowerUp(player, house){
+    businessScene() {
+        console.log("Buy business");
+    }
+    houseRepair(player, house){
         this.score+=15;
         this.scoreLabel.text = "Money: " + this.score;
-        this.scene.start("house", {"score" : this.score});
+        //this.scene.start("house", {"score" : this.score});
+        this.scene.start("house",{"score" : this.score});
+        this.scene.switch("playGame","house");
     }
     tada() {
         console.log("trigger boat scene");
@@ -96,7 +107,9 @@ class Scene2 extends Phaser.Scene {
     
 
     movePlayerManager(){
+        var isMoving = 0;
         if(this.cursorKeys.left.isDown){
+            isMoving = 1;
             if(this.player.x > 0+this.player.width/2){
                 if((this.player.y > 490 && this.player.x > 131) || this.player.y <= 490)
                     this.player.x-= 1;
@@ -106,6 +119,7 @@ class Scene2 extends Phaser.Scene {
             }
         }
         if(this.cursorKeys.right.isDown){
+            isMoving = 1;
             if(this.player.x < config.width-this.player.width/2){
                 if((this.player.y > 490 && this.player.x < 154) || this.player.y <= 490)
                     this.player.x++;
@@ -114,17 +128,19 @@ class Scene2 extends Phaser.Scene {
             }
         }
         if(this.cursorKeys.up.isDown){
+            isMoving = 1;
             if(this.player.y >0+this.player.height/2){
                 this.player.y -=1;
                 console.log(this.player.y);
             }
         }
         if(this.cursorKeys.down.isDown){
+            isMoving = 1;
             if(this.player.y < 490){
                 this.player.y +=1;
                 console.log(this.player.y)
             }
-            if(this.player.x > 125 && this.player.x < 155  && this.player.y < 540) 
+            if(this.player.x > 125 && this.player.x < 155  && (this.player.y > 489 && this.player.y < 540)) 
                 this.player.y++;
         }
         if(this.cursorKeys.space.isDown){
@@ -133,13 +149,25 @@ class Scene2 extends Phaser.Scene {
             this.scoreLabel.text ="Money:" +this.score.toString();
             
         }
-        
-        
-        else{}
+        if (isMoving);
+            //scene.player.play("player_anim");
+        else{
+            //scene.player.play("player_idle");
+        }
         
     }
 
+    player_stand(scene) {
+        scene.player = scene.physics.add.sprite(300,150, "playerIdle");
+        scene.anims.create({
+            key: "player_idle",
+            frames: scene.anims.generateFrameNumbers("playerIdle"),
+            frameRate: 20,
+            repeat: -1
+          }, this);
 
+          scene.player.play("player_idle");
+    }
     player_anim(scene){
 
         scene.player = scene.physics.add.sprite(300,150, "player");

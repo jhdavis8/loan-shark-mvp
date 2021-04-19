@@ -45,6 +45,8 @@ class location_contract_scene extends Phaser.Scene{
 
     changeSceneManager(){
         if(this.cursorKeys.space.isDown){
+            //this.scene.wake("playGame",{"score" : this.score});
+            //this.scene.switch("house","playGame");
             this.scene.start("playGame", {"score" : this.score});
             
         }
