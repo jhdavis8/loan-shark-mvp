@@ -142,8 +142,11 @@ class Scene2 extends Phaser.Scene {
         }
         this.hour = (this.timeMod/60 | 0);
         this.minute = (this.timeMod-(60 * this.hour));
-        if (this.minute == this.minute%10){
-            this.minute = "0" + this.minute.toString()
+        if (this.minute < 30){
+            this.minute = "00";
+        }
+        else if (this.minute < 60){
+            this.minute = "30";
         }
         if (this.hour == 0)
             this.hour = 12;
