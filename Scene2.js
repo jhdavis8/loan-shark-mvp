@@ -12,9 +12,16 @@ class Scene2 extends Phaser.Scene {
         this.background= this.add.tileSprite(0,0, config.width, config.height, "background");
         this.water= this.add.tileSprite(400,800, config.width, config.height, "water");
         this.road = this.add.tileSprite(0, 160, config.width, 40, "road");
+
         this.car = this.add.image(170,130,"car");
-        this.roadVert = this.add.tileSprite(160, 200, 280, 40, "road");
+        this.roadVert = this.add.tileSprite(160, 200, 270, 40, "road");
+        this.dock = this.add.tileSprite(120, 480, 40, 80, "dock");
+        this.dockpillars = this.add.tileSprite(160, 498, 40, 64, "dockpillars");
+        this.dockpillars2 = this.add.tileSprite(112, 498, 40, 64, "dockpillars");
         this.roadVert.angle = 90;
+        this.dock.setOrigin(0,0);
+        this.dockpillars.setOrigin(0,0);
+        this.dockpillars2.setOrigin(0,0);
         this.background.setOrigin(0,0);
         this.road.setOrigin(0,0);
         this.roadVert.setOrigin(0,0);
