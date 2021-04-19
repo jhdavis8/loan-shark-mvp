@@ -2,6 +2,7 @@ class Scene2 extends Phaser.Scene {
     
     totalTime;
     displayTime;
+    currentDay;
     //the higher the timerate, the slower the clock moves
     timeRate;
     timeRateCounter;
@@ -11,6 +12,7 @@ class Scene2 extends Phaser.Scene {
         this.totalTime = 0;
         this.timeRate = 4;
         this.timeRateCounter = 0;
+        this.currentDay = 0;
         
     }
     init(data){
@@ -145,9 +147,10 @@ class Scene2 extends Phaser.Scene {
         }
         if (this.hour == 0)
             this.hour = 12;
-        this.displayTime = (this.hour.toString() + ":"  + this.minute.toString() + " " + this.timeSuffix);
+        this.currentDay = ((this.totalTime/1440) | 0) + 1;
+        this.displayTime = ("day " + this.currentDay + ", " + this.hour.toString() + ":"  + this.minute.toString() + " " + this.timeSuffix);
 
         
-        this.timeLabel.text = "time: " + this.displayTime;
+        this.timeLabel.text = this.displayTime;
     }
 }
