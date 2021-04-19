@@ -20,7 +20,11 @@ class Base_property extends Phaser.Scene {
     }
 
     buy_property(){
-        console.log("buy property")
+        console.log("buy property");
+        console.log(config.assets.house);
+        console.log(config.player.assets);
+        config.player.assets["house"] = config.assets.house;
+        console.log(config.player.assets);
     }
     back_to_map(){
         this.scene.start("playGame", {"score" : 25});

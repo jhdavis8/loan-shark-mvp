@@ -23,7 +23,7 @@ class Scene2 extends Phaser.Scene {
         this.raft = this.add.image(436, 556, "raft");
         this.rowboat = this.add.image(240, 550, "rowboat");
         this.speedboat = this.add.image(684, 546, "speedboat");
-        this.player = this.physics.add.sprite(300,150, "player");
+        //this.player = this.physics.add.sprite(300,150, "player");
 
         
         this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont","Money: " + this.score, 16);
@@ -32,14 +32,7 @@ class Scene2 extends Phaser.Scene {
         
         
 
-        this.anims.create({
-            key: "player_anim",
-            frames: this.anims.generateFrameNumbers("player"),
-            frameRate: 20,
-            repeat: -1
-          });
-
-        this.player.play("player_anim");
+        this.player_anim(this);
         this.physics.add.overlap(this.player, this.house, this.pickPowerUp, null, this);
     }
     pickPowerUp(player, house){
@@ -99,5 +92,19 @@ class Scene2 extends Phaser.Scene {
         
         else{}
         
+    }
+
+
+    player_anim(scene){
+
+        scene.player = scene.physics.add.sprite(300,150, "player");
+        scene.anims.create({
+            key: "player_anim",
+            frames: scene.anims.generateFrameNumbers("player"),
+            frameRate: 20,
+            repeat: -1
+          }, this);
+
+          scene.player.play("player_anim");
     }
 }
