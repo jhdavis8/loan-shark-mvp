@@ -11,7 +11,13 @@ class Scene2 extends Phaser.Scene {
         
         this.background= this.add.tileSprite(0,0, config.width, config.height, "background");
         this.water= this.add.tileSprite(400,800, config.width, config.height, "water");
+        this.road = this.add.tileSprite(0, 160, config.width, 40, "road");
+        this.car = this.add.image(170,130,"car");
+        this.roadVert = this.add.tileSprite(160, 200, 280, 40, "road");
+        this.roadVert.angle = 90;
         this.background.setOrigin(0,0);
+        this.road.setOrigin(0,0);
+        this.roadVert.setOrigin(0,0);
         this.logo = this.add.image(80, 60, "logo");
         this.house = this.physics.add.image(128, 128, "house");
         this.raft = this.add.image(436, 556, "raft");
