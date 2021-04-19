@@ -22,11 +22,15 @@ class Scene2 extends Phaser.Scene {
     
         
         this.background= this.add.tileSprite(0,0, config.width, config.height, "background");
-        this.water= this.add.tileSprite(400,800, config.width, config.height, "water");
+        this.sand = this.add.tileSprite(400, 450, config.width, 80, "sand");
+        this.water= this.add.tileSprite(400,790, config.width, config.height, "water");
         this.road = this.add.tileSprite(0, 160, config.width, 40, "road");
-
+        this.sandedge = this.add.tileSprite(0, 480, config.width, 40, "sandedge");
+        this.grassedge = this.add.tileSprite(0, 400, config.width, 40, "grassedge");
+        this.sandedge.setOrigin(0,0);
+        this.grassedge.setOrigin(0,0);
         this.car = this.add.image(170,130,"car");
-        this.roadVert = this.add.tileSprite(160, 200, 270, 40, "road");
+        this.roadVert = this.add.tileSprite(160, 200, 210, 40, "road");
         this.dock = this.add.tileSprite(120, 480, 40, 80, "dock");
         this.dockpillars = this.add.tileSprite(160, 498, 40, 64, "dockpillars");
         this.dockpillars2 = this.add.tileSprite(112, 498, 40, 64, "dockpillars");
@@ -38,10 +42,13 @@ class Scene2 extends Phaser.Scene {
         this.road.setOrigin(0,0);
         this.roadVert.setOrigin(0,0);
         this.logo = this.add.image(80, 60, "logo");
+        this.roadedge = this.add.image(160,405, "roadedge");
+        this.roadedge.angle = 90;
+        this.roadedge.setOrigin(0,0);
         this.house = this.physics.add.image(128, 128, "house");
-        this.raft = this.add.image(436, 556, "raft");
-        this.rowboat = this.add.image(240, 550, "rowboat");
-        this.speedboat = this.add.image(684, 546, "speedboat");
+        this.boat = this.add.image(180, 556, "raft");
+        //this.rowboat = this.add.image(240, 550, "rowboat");
+        //this.speedboat = this.add.image(684, 546, "speedboat");
         //this.player = this.physics.add.sprite(300,150, "player");
 
         
@@ -61,12 +68,18 @@ class Scene2 extends Phaser.Scene {
         this.scene.start("house", {"score" : this.score});
     }
     update() {
-        this.movePlayerManager();
+
+        this.updateShoreline();
         
+        this.movePlayerManager();
         this.loadMenu();
         this.updateTimeOfDay();
     }
-   
+    updateShoreline() {
+        this.sandedge.tilePositionX += Math.random() * .18 - 0.09;
+        this.water.tilePositionY += Math.random() * 0.05 + 0.05;
+        this.water.tilePositionX += Math.random() * .08- 0.04;
+    }
     loadMenu(){
         this.input.keyboard.on('keydown-A', function (event) {
           console.log("MENU OPEN");
