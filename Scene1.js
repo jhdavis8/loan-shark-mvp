@@ -52,6 +52,11 @@ class Scene1 extends Phaser.Scene {
         this.load.image("rowboat", "assets/objects/rowboat.png");
         
         this.load.bitmapFont("pixelFont","assets/font/font.png","assets/font/font.xml");
+
+        this.load.image("bank", "assets/objects/bank.gif", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
        
     }
     create() {

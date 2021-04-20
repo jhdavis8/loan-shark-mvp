@@ -45,6 +45,8 @@ class Scene2 extends Phaser.Scene {
         this.roadedge = this.add.image(160,405, "roadedge");
         this.roadedge.angle = 90;
         this.roadedge.setOrigin(0,0);
+        this.house = this.physics.add.image(128, 128, "house");
+        this.bank = this.physics.add.image(72,247,"bank");
 
         //The players home
         this.home = this.physics.add.image(512, 128, "house");
@@ -77,6 +79,7 @@ class Scene2 extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.boat, this.tada, null, this);
         this.physics.add.overlap(this.player, this.business, this.businessScene, null, this);
         this.physics.add.overlap(this.player, this.home, this.goHome, null, this);
+        this.physics.add.overlap(this.player, this.bank, this.goBank, null, this);
 
         this.physics.add.collider(this.player,this.water);
         this.physics.add.overlap(this.player, this.house, this.houseRepair, null, this);
@@ -96,6 +99,11 @@ class Scene2 extends Phaser.Scene {
         this.scoreLabel.text = "Money: " + this.score;
         //this.scene.start("house", {"score" : this.score});
         this.scene.start("house",{"score" : this.score});
+        this.scene.switch("playGame","house");
+    }
+
+    goBank(){
+        this.scene.start("bank");
         this.scene.switch("playGame","house");
     }
     tada() {
@@ -230,4 +238,6 @@ class Scene2 extends Phaser.Scene {
         
         this.timeLabel.text = this.displayTime;
     }
+
+  
 }
