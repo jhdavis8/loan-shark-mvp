@@ -16,7 +16,7 @@ class Scene2 extends Phaser.Scene {
         
     }
     init(data){
-        this.score = data.score;
+        this.score = config.player.savings;
     }
     create() {
     
