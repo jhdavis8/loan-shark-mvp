@@ -16,23 +16,12 @@ class Bank extends Phaser.Scene{
         });
     }
     create(){
-        //console.log(this.score);
-        //this.background= this.add.tileSprite(0,0, config.width, config.height, "scroll");
-        //this.background.setOrigin(0,0);
-
-        var fruits = ["apple", "orange", "cherry"];
-        fruits.forEach(this.listLoans, this);
         
         
-        //this.list = this.add.bitmapText(10, 5, "pixelFont","alsdjfalsdjflaksdjfolasdkfa", 32, 1);
-        
-
-        
+        config.loans.forEach(this.listLoan, this);
+    
         this.cursorKeys = this.input.keyboard.createCursorKeys();
 
-
-        
-        
         this.leave_button = this.add.image(400, 550, "leave");
         this.leave_button.setInteractive();
         this.leave_button.on("pointerup", this.back_to_map, this);
@@ -52,21 +41,29 @@ class Bank extends Phaser.Scene{
         }
     }
 
-    listLoans(item, index){
-    
-        this.test = this.add.bitmapText(10, index*40+50, "pixelFont",item, 32, 1);
+    listLoan(item, index){
+        var loan_text = this.add.bitmapText(10, index*40+50, "pixelFont", item, 23, 1);
+        var buy_button = this.add.image(config.width-100, index*40+50, "take");
+        buy_button.setInteractive();
+        buy_button.on("pointerup",  function(){
+            this.takeLoan2(item, index, buy_button, loan_text)}, this);
 
-        this.buy_button = this.add.image(config.width-100, index*40+50, "take");
-        this.buy_button.setInteractive();
-        this.buy_button.on("pointerup", this.takeLoan, this);
-        console.log(item);
+        return buy_button;
     }
 
-    takeLoan(){
-        console.log("player_takes_loan");
+    takeLoan2(item, index, buy_button, loan_text){
+        //console.log("player_takes_loan");
+        //console.log(index);
+        config.player.takeLoan(item);
+        config.loans.splice(index, 1);
+        console.log(config.loans);
+        buy_button.destroy();
+        loan_text.destroy();
+
     }
 
     back_to_map(){
+        this.scene.restart();
         this.scene.switch("playGame", {"score" : 25});
     }
 

@@ -22,6 +22,13 @@ class Loan{
         var bottom = comp-1;
         return this.principle*(top/bottom);
     }
+
+    toString(){
+        var amount = " Loan amount: " + this.principle;
+        var interest = " Intrest Rate: " + this.interestRate;
+        var duration = " Duration: " + this.duration;
+        return amount+interest+duration;
+    }
 }
 
 class Property{
@@ -59,6 +66,15 @@ class Player {
             console.log("you cannot afford this property.");
             return 0;
         }
+        
+    }
+
+    takeLoan(loan){
+        //console.log(config.loans[0].toString());
+        console.log(loan.toString());
+        this.savings += loan.principle;
+        this.portfolio.loans.push(loan);
+        //console.log(loan);
         
     }
 
@@ -108,9 +124,14 @@ var config = {
     assets: {
         house : new Property("house", 40, 170000),
         boat : new Property("boat", 20, 75000),
-        loanOne : new Loan("house", 100000, .08, 60),
-        loanTwo : new Loan("boat")
-    }
+    },
+    loans:[
+        new Loan("house", 100000, .08, 60),
+        new Loan("house", 200000, .06, 80),
+        new Loan("house", 150000, .08, 90),
+
+        //new Loan("boat")
+    ]
 
 }
 console.log(config.player.name);
