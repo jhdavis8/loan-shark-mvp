@@ -16,6 +16,7 @@ class home_scene extends Phaser.Scene{
             frameHeight: 300
         });
     }
+    
     create(){
         //console.log(this.score);
         this.background= this.add.tileSprite(0,0, config.width+1200, config.height+1000, "bedroom");
@@ -31,7 +32,6 @@ class home_scene extends Phaser.Scene{
         
 
     }
-
 
     update(){
         this.changeSceneManager()

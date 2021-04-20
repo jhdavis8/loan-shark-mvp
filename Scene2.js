@@ -89,7 +89,7 @@ class Scene2 extends Phaser.Scene {
     }
     //Players home
     goHome(player, home){
-        this.score+=15;
+        //this.score+=15;
         this.scoreLabel.text = "Money: " + this.score;
         this.scene.start("gohome", {"score" : this.score});
     }
@@ -118,7 +118,7 @@ class Scene2 extends Phaser.Scene {
         this.updateTimeOfDay();
 
         //adds your daily returns once per day at midnight
-        if ((this.totalTime%1440 == 0) && (this.timeRateCounter == 0)){
+        if ((this.totalTime%1440 == 421) && (this.timeRateCounter == 0)){
             this.score += config.player.portfolio.dailyReturns(this.currentDay);
             this.scoreLabel.text ="Money:" +this.score.toString();
         }
@@ -135,7 +135,6 @@ class Scene2 extends Phaser.Scene {
           this.scene.start("menuS", {"score" : this.score});},this);
         
     }
-    
 
     movePlayerManager(){
         var isMoving = 0;
@@ -211,6 +210,30 @@ class Scene2 extends Phaser.Scene {
 
           scene.player.play("player_anim");
     }
+
+    nextDay(){
+        this.score+=100;
+        
+        /*
+        if((this.totalTime%1440)!=0){
+            this.totalTime+=(this.totalTime%1440);
+            this.totalTime+=420;
+        }
+        */
+
+        
+
+        console.log(this.totalTime);
+        this.totalTime+=(1440-(this.totalTime%1440));
+        this.totalTime+=420;
+        console.log(this.totalTime);
+
+        //this.score += config.player.portfolio.dailyReturns(this.currentDay);
+        //this.scoreLabel.text ="Money:" +this.score.toString();
+
+        this.scene.start("playGame", {"score" : this.score});
+    }
+
     updateTimeOfDay(){
         this.timeRateCounter++;
         if (this.timeRateCounter == this.timeRate){
