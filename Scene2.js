@@ -45,14 +45,22 @@ class Scene2 extends Phaser.Scene {
         this.roadedge = this.add.image(160,405, "roadedge");
         this.roadedge.angle = 90;
         this.roadedge.setOrigin(0,0);
-        this.house = this.physics.add.image(128, 128, "house");
 
+        //The players home
+        this.home = this.physics.add.image(512, 128, "house");
+
+        //Store
         this.business = this.physics.add.image(210, 240, "businessOld");
         this.business.body.setSize(60,60);
         this.business.body.setOffset(10,20);
+
+        //Our first loan house
+        this.house = this.physics.add.image(128, 128, "house");
+        //Boat
         this.boat = this.physics.add.image(180, 540, "rowboat");
         this.boat.body.setSize(120,40);
         this.boat.angle = 180;
+
         //this.rowboat = this.add.image(240, 550, "rowboat");
         //this.speedboat = this.add.image(684, 546, "speedboat");
         //this.player = this.physics.add.sprite(300,150, "player");
@@ -68,6 +76,7 @@ class Scene2 extends Phaser.Scene {
         this.player_anim(this);
         this.physics.add.overlap(this.player, this.boat, this.tada, null, this);
         this.physics.add.overlap(this.player, this.business, this.businessScene, null, this);
+        this.physics.add.overlap(this.player, this.home, this.goHome, null, this);
 
         this.physics.add.collider(this.player,this.water);
         this.physics.add.overlap(this.player, this.house, this.houseRepair, null, this);
@@ -75,8 +84,15 @@ class Scene2 extends Phaser.Scene {
     businessScene() {
         console.log("Buy business");
     }
-    houseRepair(player, house){
+    //Players home
+    goHome(player, home){
         this.score+=15;
+        this.scoreLabel.text = "Money: " + this.score;
+        this.scene.start("gohome", {"score" : this.score});
+    }
+    //Broken down house loan
+    houseRepair(player, house){
+        //this.score+=15;
         this.scoreLabel.text = "Money: " + this.score;
         //this.scene.start("house", {"score" : this.score});
         this.scene.start("house",{"score" : this.score});
