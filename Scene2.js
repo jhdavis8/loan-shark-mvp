@@ -103,6 +103,7 @@ class Scene2 extends Phaser.Scene {
         //adds your daily returns once per day at midnight
         if ((this.totalTime%1440 == 0) && (this.timeRateCounter == 0)){
             this.score += config.player.portfolio.dailyReturns(this.currentDay);
+            this.scoreLabel.text ="Money:" +this.score.toString();
         }
 
     }
