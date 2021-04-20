@@ -9,4 +9,4 @@ Mario Durso - Added player sprite and movement, initially created player, loan, 
 
 Joe Linthicum - Cleaned up movement mechanics, implemented in-game time, added ability to purchase and own properties which return money on a daily basis
 
-Kyle Oak - Added allowence gameplay mechanic, added money counter
+Kyle Oak - Added allowence gameplay mechanic, added money counter, created home, sleep button, when you sleep it increments the time to 7am the next day, get daily returns after sleeping
