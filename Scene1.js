@@ -8,6 +8,7 @@ class Scene1 extends Phaser.Scene {
 
 
     preload() {
+        
         this.load.image("background", "assets/textures/grass.png");
         this.load.image("water", "assets/textures/water.png");
         this.load.image("road", "assets/textures/road.png");
@@ -18,6 +19,10 @@ class Scene1 extends Phaser.Scene {
         this.load.image("grassedge", "assets/textures/grassedge.png");
         this.load.image("dockpillars", "assets/textures/dockpillars.png");
         this.load.image("house", "assets/objects/house.png", {
+            frameWidth: 128,
+            frameHeight: 128
+        });
+        this.load.image("home", "assets/objects/fishhut.jpg", {
             frameWidth: 128,
             frameHeight: 128
         });

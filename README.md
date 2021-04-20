@@ -5,7 +5,7 @@ Justin Henke — minimum viable boat/speedboat textures, set up test scene for d
 
 John Pedicone — Beautiful logo, textures, and rest of the sprites
 
-Mario Durso - Added player sprite and movement
+Mario Durso - Added player sprite and movement, initially created player, loan, and property classes, created bank scene and ability to take loans, created house scene
 
 Joe Linthicum - Cleaned up movement mechanics, implemented in-game time, added ability to purchase and own properties which return money on a daily basis
 
