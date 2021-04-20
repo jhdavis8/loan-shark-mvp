@@ -8,6 +8,7 @@ class menuScene extends Phaser.Scene{
       //  this.load.image("Lbox", "assets/objects/UI-ELEMENT-LTextbox.png");
         this.load.image("sbox", "assets/objects/UI-ELEMENT-STextbox.png");
         this.load.image("menu", "assets/objects/UI-ELEMENT-MENU.png");
+       
     
     }
 
@@ -19,14 +20,15 @@ class menuScene extends Phaser.Scene{
         
         this.add.bitmapText(242, 115, "pixelFont", "MENU", 45, 1);
 
-        this.leave_button = this.add.image(400, 300, "sbox");
+        this.leave_button = this.add.image(100, 50, "sbox");
+        
         this.leave_button.setInteractive();
         this.leave_button.on("pointerup", this.leaveMenu, this);
         
         
         
-        this.add.bitmapText(242, 200, "pixelFont",config.player.name, 28, 1);
-        this.add.bitmapText(242, 210, "pixelFont",config.portfolio.loans.name, 28, 1);
+        this.add.bitmapText(242, 150, "pixelFont",config.player.name, 28, 1);
+      //  this.add.bitmapText(242, 210, "pixelFont",config.portfolio.loans.name, 28, 1);
         
 
     }
@@ -62,10 +64,13 @@ class menuScene extends Phaser.Scene{
     /* TODO: 
     *   Make menu popup when the player enters the shops or houses
     *   Give functionality to the menu
+    *           Display Loans and assets
+    *           Add text to buttons
+    *           
     *   add cool background to menu
     *   some red errors pop up so maybe fix em
     *   Make loading text
-    *   Make Titlescreen  
+    *   
     * 
     * 
     * 
