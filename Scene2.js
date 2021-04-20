@@ -10,7 +10,7 @@ class Scene2 extends Phaser.Scene {
     constructor() {
         super("playGame");
         this.totalTime = 0;
-        this.timeRate = 4;
+        this.timeRate = 2;
         this.timeRateCounter = 0;
         this.currentDay = 0;
         
@@ -87,11 +87,17 @@ class Scene2 extends Phaser.Scene {
     }
     update() {
 
+        config.player.savings = this.score;
         this.updateShoreline();
-        
         this.movePlayerManager();
         this.loadMenu();
         this.updateTimeOfDay();
+
+        //adds your daily returns once per day at midnight
+        if ((this.totalTime%1440 == 0) && (this.timeRateCounter == 0)){
+            this.score += config.player.portfolio.dailyReturns(this.currentDay);
+        }
+
     }
     updateShoreline() {
         this.sandedge.tilePositionX += Math.random() * .18 - 0.09;
