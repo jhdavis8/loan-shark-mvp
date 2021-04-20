@@ -10,7 +10,7 @@ class Scene2 extends Phaser.Scene {
     constructor() {
         super("playGame");
         this.totalTime = 0;
-        this.timeRate = 2;
+        this.timeRate = 4;
         this.timeRateCounter = 0;
         this.currentDay = 0;
         
