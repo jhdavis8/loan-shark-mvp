@@ -7,6 +7,6 @@ John Pedicone — Beautiful logo, textures, and rest of the sprites
 
 Mario Durso - Added player sprite and movement
 
-Joe Linthicum - Cleaned up movement mechanics, added diagonal movement
+Joe Linthicum - Cleaned up movement mechanics, implemented in-game time
 
 Kyle Oak - Added allowence gameplay mechanic, added money counter
