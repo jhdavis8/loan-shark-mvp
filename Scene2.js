@@ -104,7 +104,7 @@ class Scene2 extends Phaser.Scene {
 
     goBank(){
         this.scene.start("bank");
-        this.scene.switch("playGame","house");
+        this.scene.switch("playGame","bank");
     }
     tada() {
         console.log("trigger boat scene");
