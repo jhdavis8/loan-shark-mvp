@@ -17,7 +17,7 @@ class Bank extends Phaser.Scene{
     }
     create(){
         
-        
+        this.create_loans();
         config.loans.forEach(this.listLoan, this);
     
         this.cursorKeys = this.input.keyboard.createCursorKeys();
@@ -28,6 +28,7 @@ class Bank extends Phaser.Scene{
 
 
         this.loans_taken = [];
+        console.log(this.loans_taken);
     }
 
 
@@ -45,8 +46,8 @@ class Bank extends Phaser.Scene{
     }
 
     listLoan(item, index){
-        var loan_text = this.add.bitmapText(10, index*40+50, "pixelFont", item, 23, 1);
-        var buy_button = this.add.image(config.width-100, index*40+50, "take");
+        var loan_text = this.add.bitmapText(10, index*120+50, "pixelFont", item, 23, 1);
+        var buy_button = this.add.image(config.width-100, index*145+50, "take");
         buy_button.setInteractive();
         buy_button.on("pointerup",  function(){
             this.takeLoan2(item, index, buy_button, loan_text)}, this);
@@ -70,10 +71,15 @@ class Bank extends Phaser.Scene{
 
     back_to_map(){
         this.loans_taken.sort();
-        config.loans.splice(this.loans_taken[0], this.loans_taken.length)
+        config.loans.splice(this.loans_taken[0], this.loans_taken.length);
 
         this.scene.restart();
         this.scene.switch("playGame", {"score" : 25});
+    }
+
+    create_loans(){
+        var Scene2 = this.scene.get("playGame");
+        console.log("Create loans" +Scene2.currentDay);
     }
 
     

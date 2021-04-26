@@ -17,17 +17,18 @@ class Loan{
     }
 
     getPayment(){
-        var comp = Math.pow((1+this.interestRate), this.duration);
+        var comp = Math.pow((1+this.interestRate), this.duration/7);
         var top = this.interestRate*comp;
         var bottom = comp-1;
-        return this.principle*(top/bottom);
+        return (this.principle*(top/bottom)).toFixed(2);
     }
 
     toString(){
-        var amount = " Loan amount: " + this.principle;
-        var interest = " Intrest Rate: " + this.interestRate;
-        var duration = " Duration: " + this.duration;
-        return amount+interest+duration;
+        var amount = "Loan amount: $" + this.principle;
+        var interest = "Intrest Rate: " + this.interestRate*100 + "% per week";
+        var duration = "Duration: " + this.duration + " days";
+        var payment = "Payment: $" + this.getPayment() + " per week";
+        return this.name+"\n"+amount+"\n"+interest+"\n"+duration+"\n"+payment;
     }
 }
 
@@ -126,12 +127,18 @@ var config = {
         boat : new Property("boat", 20, 75000),
     },
     loans:[
-        new Loan("house", 100000, .08, 60),
-        new Loan("house", 200000, .06, 80),
-        new Loan("house", 150000, .08, 90),
+        new Loan("Loan 1", 1000, .08, 14),
+        new Loan("Loan 2", 2000, .06, 35),
+        new Loan("Loan 3", 1500, .10, 21),
+      
 
         //new Loan("boat")
-    ]
+    ],
+    bankTimer :1
+
+}
+
+function setLoans(){
 
 }
 console.log(config.player.name);
