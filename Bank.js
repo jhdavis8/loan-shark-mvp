@@ -25,6 +25,9 @@ class Bank extends Phaser.Scene{
         this.leave_button = this.add.image(400, 550, "leave");
         this.leave_button.setInteractive();
         this.leave_button.on("pointerup", this.back_to_map, this);
+
+
+        this.loans_taken = [];
     }
 
 
@@ -52,21 +55,28 @@ class Bank extends Phaser.Scene{
     }
 
     takeLoan2(item, index, buy_button, loan_text){
-        //console.log("player_takes_loan");
-        //console.log(index);
         config.player.takeLoan(item);
-        config.loans.splice(index, 1);
+        //config.loans.splice(index, 1);
+        this.loans_taken.push(index);
         console.log(config.loans);
         buy_button.destroy();
         loan_text.destroy();
 
     }
 
+    remove_loan(){
+        config.loans.splice()
+    }
+
     back_to_map(){
+        this.loans_taken.sort();
+        config.loans.splice(this.loans_taken[0], this.loans_taken.length)
+
         this.scene.restart();
         this.scene.switch("playGame", {"score" : 25});
     }
 
+    
     
     
         
