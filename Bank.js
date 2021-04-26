@@ -10,13 +10,10 @@ class Bank extends Phaser.Scene{
     preload() {
         this.load.image("take", "assets/buttons/button_take-loan.png");
         this.load.image("leave", "assets/buttons/button_return-to-town.png");
-        this.load.image("scroll", "assets/textures/scroll.png", {
-            frameWidth: 400,
-            frameHeight: 300
-        });
+        this.load.image("scroll", "assets/textures/scroll.png");
     }
     create(){
-        
+        //this.background= this.add.image(config.width/2, config.height/2, "scroll");
         this.create_loans();
         config.loans.forEach(this.listLoan, this);
     

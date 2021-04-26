@@ -14,6 +14,7 @@ class Loan{
         var comp= Math.pow((1+this.interestRate), this.duration);
         this.owed= this.principle*comp;
         this.monthsPaid =0;
+        
     }
 
     getPayment(){
@@ -30,6 +31,8 @@ class Loan{
         var payment = "Payment: $" + this.getPayment() + " per week";
         return this.name+"\n"+amount+"\n"+interest+"\n"+duration+"\n"+payment;
     }
+
+    
 }
 
 class Property{
@@ -55,6 +58,7 @@ class Player {
         this.portfolio = new Portfolio;
         this.credit_score = 500;
         this.savings = 0;
+        this.loans_completed =0;
     }
 
     buyProperty(beingBought){
@@ -77,6 +81,17 @@ class Player {
         this.portfolio.loans.push(loan);
         //console.log(loan);
         
+    }
+    calculate_player_rates(){
+        var base_rates = [.08, .10, .12];
+        var improved_rates = [.04,.06,.08];
+        //var best_rates = []
+        if(this.loans_completed >3){
+            return improved_rates;
+        }
+        else{
+            return base_rates;
+        }
     }
 
 }
@@ -138,8 +153,35 @@ var config = {
 
 }
 
-function setLoans(){
+function setLoans(properties, config){
+    var new_loans = [];
+    var min = 1000000000000000000000000000000000000000000000000;
+    properties.forEach(function(item, index){
+        if(item.price < min){
+            min = item.price;
+        }
+    });
 
+    var rates = config.player.calculate_player_rates();
+    var durations = [];
+    for(var i = 0; i < 4; i++){
+        var value = 21;
+        durations.push(21+(7*i));
+    }
+    console.log(durations);
+   // const random = Math.floor(Math.random() * months.length);
+    for(var i = 1; i < 4; i++){
+        var randomDuration = Math.floor(Math.random() * durations.length);
+       
+        var name = "Loan " + i;
+        var loan=new Loan(name, min, rates[i-1], durations[randomDuration]);
+        new_loans.push(loan);
+        durations.splice(randomDuration, 1);
+    }
+    console.log(new_loans);
+
+    config.loans = new_loans;
 }
+setLoans(Object.values(config.assets), config);
 console.log(config.player.name);
 var game = new Phaser.Game(config);
