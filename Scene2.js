@@ -25,6 +25,7 @@ class Scene2 extends Phaser.Scene {
         this.sand = this.add.tileSprite(400, 450, config.width, 80, "sand");
         this.water= this.add.tileSprite(400,790, config.width, config.height, "water");
         this.road = this.add.tileSprite(0, 160, config.width, 40, "road");
+        this.road2 = this.add.tileSprite(0, 300, config.width, 40, "road");
         this.sandedge = this.add.tileSprite(0, 480, config.width, 40, "sandedge");
         this.grassedge = this.add.tileSprite(0, 400, config.width, 40, "grassedge");
         this.sandedge.setOrigin(0,0);
@@ -40,24 +41,36 @@ class Scene2 extends Phaser.Scene {
         this.dockpillars2.setOrigin(0,0);
         this.background.setOrigin(0,0);
         this.road.setOrigin(0,0);
+        this.road2.setOrigin(0,0);
         this.roadVert.setOrigin(0,0);
-        this.logo = this.add.image(80, 60, "logo");
+        this.sign = this.add.image(690, 70, "billboard");
+        this.logo = this.add.image(680, 60, "logo");
+        
         this.roadedge = this.add.image(160,405, "roadedge");
         this.roadedge.angle = 90;
         this.roadedge.setOrigin(0,0);
-        this.house = this.physics.add.image(128, 128, "house");
-        this.bank = this.physics.add.image(72,247,"bank");
+        this.bank = this.physics.add.image(400,240,"bank");
+        this.bank.body.setSize(60,50);
+        this.bank.body.setOffset(10,20);
 
         //The players home
-        this.home = this.physics.add.image(512, 128, "house");
+        this.home = this.physics.add.image(460, 100, "house");
 
         //Store
-        this.business = this.physics.add.image(210, 240, "businessOld");
+        this.business = this.physics.add.image(220, 240, "businessOld");
         this.business.body.setSize(60,60);
         this.business.body.setOffset(10,20);
 
+        this.boatShop = this.physics.add.image(60, 250, "shop");
+        this.boatShop.body.setSize(100,70);
+    
+
+        //Restaurant
+        this.restaurant = this.physics.add.image(580, 240, "restaurant");
+        this.restaurant.body.setSize(60,60);
+        this.restaurant.body.setOffset(10,20);
         //Our first loan house
-        this.house = this.physics.add.image(128, 128, "house");
+        this.house = this.physics.add.image(100,100, "house");
         //Boat
         this.boat = this.physics.add.image(180, 540, "rowboat");
         this.boat.body.setSize(120,40);

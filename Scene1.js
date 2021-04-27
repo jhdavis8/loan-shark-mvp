@@ -18,17 +18,16 @@ class Scene1 extends Phaser.Scene {
         this.load.image("sandedge", "assets/textures/sandedge.png");
         this.load.image("grassedge", "assets/textures/grassedge.png");
         this.load.image("dockpillars", "assets/textures/dockpillars.png");
-        this.load.image("house", "assets/objects/house.png", {
-            frameWidth: 128,
-            frameHeight: 128
-        });
+        this.load.image("restaurant","assets/objects/food.png");
+        this.load.image("house", "assets/objects/ViableHouse1.png");
+        this.load.image("house2", "assets/objects/ViableHouse2.png");
         this.load.image("home", "assets/objects/fishhut.jpg", {
             frameWidth: 128,
             frameHeight: 128
         });
         this.load.image("businessOld", "assets/objects/businessOld.png");
         this.load.image("businessRestored", "assets/objects/business.png");
-
+        this.load.image("shop", "assets/objects/ViableShop.png");
         this.load.image("car", "assets/objects/car.png");
         this.load.spritesheet("business", "assets/sprites/business.png", {
             frameWidth: 80,
@@ -47,13 +46,14 @@ class Scene1 extends Phaser.Scene {
             frameHeight: 32
         });
         this.load.image("logo", "assets/logos/loanSharkLogo.png");
+        this.load.image("billboard", "assets/logos/billboard.png");
         this.load.image("raft", "assets/objects/LS-Raft.png");
         this.load.image("speedboat", "assets/objects/speedboat.png");
         this.load.image("rowboat", "assets/objects/rowboat.png");
         
         this.load.bitmapFont("pixelFont","assets/font/font.png","assets/font/font.xml");
 
-        this.load.image("bank", "assets/objects/bank.gif", {
+        this.load.image("bank", "assets/objects/bank.png", {
             frameWidth: 32,
             frameHeight: 32
         });
