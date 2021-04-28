@@ -63,7 +63,7 @@ class Scene1 extends Phaser.Scene {
         this.add.text(20,20,"Loading game...");
         //this.person = new  Player();
         //console.log(Player.name);
-        this.scene.start("playGame", {"score" : 10}, {"totalTime" : 0});
+        this.scene.start("titleS", {"score" : this.score});
     }
     
 }
