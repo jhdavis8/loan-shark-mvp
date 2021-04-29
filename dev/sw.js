@@ -1,4 +1,4 @@
-importScripts("/loan-shark-mvp/devprecache-manifest.b2e50f780cdf4d950602850170f47e30.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/loan-shark-mvp/devprecache-manifest.5e7cb134a605898d189e036629fb3cd8.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /**
  * You should only modify this, if you know what you are doing.
