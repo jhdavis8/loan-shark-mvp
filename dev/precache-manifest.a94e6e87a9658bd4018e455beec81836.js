@@ -1,5 +1,25 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
+    "revision": "6c49651a5f493f0914f0f6fa07f95080",
+    "url": "/loan-shark-mvp/devBank.js"
+  },
+  {
+    "revision": "1426f8c1a96f0eeccb04db85eeb302d4",
+    "url": "/loan-shark-mvp/devBase_property.js"
+  },
+  {
+    "revision": "9a8fc8d0c62b4768e0b35436824e40f7",
+    "url": "/loan-shark-mvp/devBeach.js"
+  },
+  {
+    "revision": "c418e100620bb28baef922615539f786",
+    "url": "/loan-shark-mvp/devScene1.js"
+  },
+  {
+    "revision": "9149d8e44d41282fcfc7125a1459fd38",
+    "url": "/loan-shark-mvp/devScene2.js"
+  },
+  {
     "revision": "d4dcdee44cc1d7ed918fc952144d98d2",
     "url": "/loan-shark-mvp/devassets/buttons/button_buy-property.png"
   },
@@ -184,19 +204,43 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/loan-shark-mvp/devassets/textures/water.png"
   },
   {
+    "revision": "d62d60923bfb3a06a85601b8b623a6d5",
+    "url": "/loan-shark-mvp/devgame.js"
+  },
+  {
     "revision": "7be4b1378756ac9e5379",
     "url": "/loan-shark-mvp/devgen.main.4c6093c3c7be0f6a678c.bundle.js"
+  },
+  {
+    "revision": "2a491a926406a00d0b723760bfdcdb47",
+    "url": "/loan-shark-mvp/devhome_scene.js"
   },
   {
     "revision": "996cf7a45952ae9f43a2d9f8345dfdd1",
     "url": "/loan-shark-mvp/devindex.html"
   },
   {
+    "revision": "2bea328a33a898836a9de0f5f7645867",
+    "url": "/loan-shark-mvp/devlocation_contract_scene.js"
+  },
+  {
     "revision": "b6875d5f4399e4b8a6604f4fc8749a1f",
     "url": "/loan-shark-mvp/devmanifest.json"
   },
   {
+    "revision": "ad6af47b8489de8527fdef42a2512a61",
+    "url": "/loan-shark-mvp/devmenuScene.js"
+  },
+  {
+    "revision": "315595c310902615cb56ce2cf026feb8",
+    "url": "/loan-shark-mvp/devphaser.min.js"
+  },
+  {
     "revision": "701445d8817f73e3da17e450b69faa36",
     "url": "/loan-shark-mvp/devsw.js"
+  },
+  {
+    "revision": "e6e1df784ec51415c62c3b9a8443db20",
+    "url": "/loan-shark-mvp/devtitleScene.js"
   }
 ]);
