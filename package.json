@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Phaser 3 starter template for educational games, using TypeScript, webpack, and Github Pages.",
   "homepage": "https://github.com/acbart/educational-phaser-game-template#readme",
-  "main": "index.js",
+  "main": "game.js",
   "game": {
     "url": "loan-shark-mvp",
     "shortName": "LoanShark",
