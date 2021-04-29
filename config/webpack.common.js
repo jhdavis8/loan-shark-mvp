@@ -5,7 +5,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 const package = require('../package.json');
 
 module.exports = {
-  entry: ['./src/scripts/game.ts'],
+  entry: ['./game.js'],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].bundle.js',
@@ -15,7 +15,11 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js']
   },
   module: {
-    rules: [{ test: /\.tsx?$/, include: path.join(__dirname, '../src'), loader: 'ts-loader' }]
+      rules: [{ test: /\.tsx?$/, include: path.join(__dirname, '..'), loader: 'ts-loader' },
+	      { test: /\.m?js$/, include: path.join(__dirname, '..'), use: {
+		  loader: 'babel-loader',
+		  options: { presets: ['@babel/preset-env'] }
+	      }}]
   },
   optimization: {
     splitChunks: {
@@ -30,11 +34,11 @@ module.exports = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({ gameName: package.game.name, template: 'src/index.html' }),
+    new HtmlWebpackPlugin({ gameName: package.game.name, template: 'index.html' }),
     new CopyWebpackPlugin([
-      { from: 'src/assets', to: 'assets' },
+      { from: 'assets', to: 'assets' },
       { from: 'config/pwa', to: '' },
-      { from: 'src/assets/icons/favicon.ico', to: '' }
+      { from: 'assets/icons/favicon.ico', to: '' }
     ]),
     new InjectManifest({
       swSrc: path.resolve(__dirname, 'pwa/sw.js')

@@ -7,7 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const package = require('../package.json');
 
 const RECOMMENDED_MAXIMUM_FILE_SIZE = 50 * 1024 * 1024; // 5mb
-const EGDD_FILE = "egdd.md";
+//const EGDD_FILE = "egdd.md";
 
 function copyResolver() {
     return (err) => {
@@ -29,14 +29,13 @@ module.exports = (env) => {
     }
 
     // Copy EGDD to appropriate endpoint
-    fs.copyFileSync(path.resolve(__dirname, '..', EGDD_FILE),
-        path.resolve(__dirname, '..', 'dist', endpoint, EGDD_FILE),
-        copyResolver("Copied", EGDD_FILE));
+    // fs.copyFileSync(path.resolve(__dirname, '..', EGDD_FILE),
+    //     path.resolve(__dirname, '..', 'dist', endpoint, EGDD_FILE),
+    //     copyResolver("Copied", EGDD_FILE));
 
     // Update the index file for the dist directory
     fs.copyFileSync(path.resolve(__dirname, 'index.html'),
-        path.resolve(__dirname, '..', 'dist', 'index.html'),
-        copyResolver('index.html was copied to index.html'));
+        path.resolve(__dirname, '..', 'dist', 'index.html'));
 
     // Update Manifest file
     manifestFile = path.resolve(__dirname, 'pwa', 'manifest.json');
