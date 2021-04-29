@@ -216,7 +216,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/loan-shark-mvp/devhome_scene.js"
   },
   {
-    "revision": "6a53f76b53a51237a3c2ffdafb2fff8e",
+    "revision": "3fdf79711ed1c3f212a0255af16b1cc7",
     "url": "/loan-shark-mvp/devindex.html"
   },
   {
